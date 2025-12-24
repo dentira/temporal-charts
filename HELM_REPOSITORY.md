@@ -1,27 +1,28 @@
-# Helm Repository Setup for Bitbucket Pages
+# Helm Repository Setup for GitHub Pages
 
-This guide explains how to host this Temporal Helm chart repository on Bitbucket Pages.
+This guide explains how to host this Temporal Helm chart repository on GitHub Pages.
 
 ## Prerequisites
 
 - Helm 3.x installed
-- Git repository on Bitbucket
-- Access to enable Bitbucket Pages for your repository
+- Git repository on GitHub
+- Access to enable GitHub Pages for your repository
 
 ## Initial Setup
 
-### 1. Enable Bitbucket Pages
+### 1. Enable GitHub Pages
 
-1. Go to your Bitbucket repository settings
+1. Go to your GitHub repository settings
 2. Navigate to **Settings** → **Pages**
-3. Enable Bitbucket Pages
-4. Set the source branch to `main` (or your default branch)
-5. Set the source directory to `docs/`
-6. Save the settings
+3. Under "Build and deployment":
+   - Source: Select "Deploy from a branch"
+   - Branch: Select `main` (or your default branch)
+   - Folder: Select `/docs`
+4. Save the settings
 
 Your Helm repository will be available at:
 ```
-https://dentira.bitbucket.io/temporal-charts/
+https://dentira.github.io/temporal-charts/
 ```
 
 ### 2. Verify the Repository URL
@@ -29,7 +30,7 @@ https://dentira.bitbucket.io/temporal-charts/
 The repository is already configured for the Dentira organization. The URL is set to:
 
 ```bash
-https://dentira.bitbucket.io/temporal-charts/
+https://dentira.github.io/temporal-charts/
 ```
 
 You can verify this in `docs/index.yaml`. The update script has already been run with this URL.
@@ -47,7 +48,7 @@ Whenever you make changes to the chart:
 1. **Update the chart version** in `charts/temporal/Chart.yaml`
 2. **Run the update script**:
    ```bash
-   ./update-helm-repo.sh https://dentira.bitbucket.io/temporal-charts/
+   ./update-helm-repo.sh https://dentira.github.io/temporal-charts/
    ```
 3. **Commit and push the changes**:
    ```bash
@@ -58,14 +59,16 @@ Whenever you make changes to the chart:
    git push origin vX.Y.Z
    ```
 
+Alternatively, you can use the Jenkins CI/CD pipeline which automatically packages and publishes the chart when you push a version tag. See [JENKINS_SETUP.md](JENKINS_SETUP.md) for configuration details.
+
 ## Using the Helm Repository
 
-Once published on Bitbucket Pages, users can add and use your repository:
+Once published on GitHub Pages, users can add and use your repository:
 
 ### Add the Repository
 
 ```bash
-helm repo add temporal-charts https://dentira.bitbucket.io/temporal-charts/
+helm repo add temporal-charts https://dentira.github.io/temporal-charts/
 helm repo update
 ```
 
@@ -103,22 +106,31 @@ temporal-charts/
 │       ├── Chart.yaml
 │       ├── values.yaml
 │       └── templates/
-├── docs/                      # Helm repository (served by Bitbucket Pages)
+├── docs/                      # Helm repository (served by GitHub Pages)
 │   ├── index.yaml            # Repository index
 │   └── temporal-*.tgz        # Packaged chart versions
+├── Jenkinsfile               # Jenkins CI/CD pipeline
 ├── update-helm-repo.sh       # Script to update the repository
-└── HELM_REPOSITORY.md        # This file
+├── HELM_REPOSITORY.md        # This file
+└── JENKINS_SETUP.md          # Jenkins setup guide
 ```
 
 ## Automation with CI/CD
 
-You can automate the packaging and publishing process using Jenkins.
+### Jenkins Pipeline
 
-This repository includes a `Jenkinsfile` that automatically:
+This repository includes a comprehensive `Jenkinsfile` that automatically:
+- Validates chart structure on every commit
 - Lints charts on every commit
+- Tests chart templates
 - Packages and publishes on version tags (v*)
 - Updates the repository index
-- Commits and pushes changes
+- Commits and pushes changes to GitHub
+- Creates GitHub releases
+
+The pipeline runs automatically when you:
+- Push commits (runs validation and linting)
+- Push version tags like `v1.0.0` (runs full release process)
 
 See [JENKINS_SETUP.md](JENKINS_SETUP.md) for complete Jenkins configuration instructions.
 
@@ -126,10 +138,11 @@ See [JENKINS_SETUP.md](JENKINS_SETUP.md) for complete Jenkins configuration inst
 
 ### Chart not found after adding repository
 
-1. Verify Bitbucket Pages is enabled and published
+1. Verify GitHub Pages is enabled and published
 2. Check that the `docs/` directory is committed and pushed
-3. Ensure the URL in `index.yaml` matches your Bitbucket Pages URL
-4. Wait a few minutes for Bitbucket Pages to update (it may take 5-10 minutes)
+3. Ensure the URL in `index.yaml` matches your GitHub Pages URL
+4. Wait a few minutes for GitHub Pages to update (it may take 5-10 minutes)
+5. Check the Jenkins pipeline runs to ensure the build and deployment succeeded
 
 ### Index file not updating
 
@@ -140,7 +153,7 @@ helm repo index docs/ --url <base-url> --merge docs/index.yaml
 
 ### SSL/TLS errors
 
-Bitbucket Pages serves content over HTTPS by default. Make sure you're using `https://` in your repository URL.
+GitHub Pages serves content over HTTPS by default. Make sure you're using `https://` in your repository URL.
 
 ## Best Practices
 
@@ -163,5 +176,5 @@ Bitbucket Pages serves content over HTTPS by default. Make sure you're using `ht
 ## Support
 
 For issues with the Temporal chart itself, please open an issue in this repository.
-For Bitbucket Pages issues, consult the [Bitbucket Pages documentation](https://support.atlassian.com/bitbucket-cloud/docs/publishing-a-website-on-bitbucket-cloud/).
+For GitHub Pages issues, consult the [GitHub Pages documentation](https://docs.github.com/en/pages).
 

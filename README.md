@@ -1,6 +1,25 @@
 # Temporal Helm Chart
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftemporalio%2Ftemporal-helm-charts.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftemporalio%2Ftemporal-helm-charts?ref=badge_shield)
 
+## 📦 Helm Repository
+
+This repository is hosted as a Helm chart repository on GitHub Pages at:
+
+```
+https://dentira.github.io/temporal-charts/
+```
+
+**Quick Start:**
+```bash
+helm repo add temporal-charts https://dentira.github.io/temporal-charts/
+helm repo update
+helm install my-temporal temporal-charts/temporal
+```
+
+For setup instructions, see [JENKINS_SETUP.md](JENKINS_SETUP.md).
+
+---
+
 > **Note:** This version is currently an RC (release candidate). To install it, you must specify the version using `--version '>=1.0.0-0'` in your helm install command.
 
 > **For existing users:** If you're upgrading from a previous version of the Temporal Helm chart, please see [UPGRADING.md](UPGRADING.md) for important migration information and breaking changes.
@@ -29,13 +48,13 @@ This repo only contains one chart currently, but is structured in the standard h
 
 There are multiple ways to install the Temporal chart:
 
-### Option 1: Via Bitbucket Pages Helm Repository (Recommended for this fork)
+### Option 1: Via GitHub Pages Helm Repository (Recommended for this fork)
 
-This repository is configured to be hosted on Bitbucket Pages under the Dentira organization. Once set up, you can install directly from the Helm repository:
+This repository is configured to be hosted on GitHub Pages under the Dentira organization. Once set up, you can install directly from the Helm repository:
 
 ```bash
 # Add the Helm repository
-helm repo add temporal-charts https://dentira.bitbucket.io/temporal-charts/
+helm repo add temporal-charts https://dentira.github.io/temporal-charts/
 
 # Update your local Helm repo cache
 helm repo update
@@ -44,7 +63,7 @@ helm repo update
 helm install my-temporal temporal-charts/temporal --version 1.0.0-rc.1
 ```
 
-See [HELM_REPOSITORY.md](HELM_REPOSITORY.md) for complete setup instructions.
+See [HELM_REPOSITORY.md](HELM_REPOSITORY.md) for Helm repository usage and [JENKINS_SETUP.md](JENKINS_SETUP.md) for Jenkins CI/CD setup.
 
 ### Option 2: Via Official Temporal Helm Repository
 

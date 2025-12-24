@@ -1,6 +1,6 @@
 # Temporal Helm Charts Repository
 
-This directory contains the packaged Helm charts and repository index for hosting on Bitbucket Pages.
+This directory contains the packaged Helm charts and repository index for hosting on GitHub Pages.
 
 ## Contents
 
@@ -12,7 +12,7 @@ This directory contains the packaged Helm charts and repository index for hostin
 Add this repository to your Helm installation:
 
 ```bash
-helm repo add temporal-charts https://dentira.bitbucket.io/temporal-charts/
+helm repo add temporal-charts https://dentira.github.io/temporal-charts/
 helm repo update
 helm search repo temporal-charts
 ```
