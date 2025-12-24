@@ -1,3 +1,4 @@
+{{- if $.Values.schema.setup.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -169,3 +170,4 @@ datacenter', '{{ $store.config.datacenter }}'{{- end }}]
             name: "{{ include "temporal.fullname" $ }}-shims"
             defaultMode: 0555
       {{- end }}
+{{- end }}
