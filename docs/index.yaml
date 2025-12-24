@@ -3,7 +3,29 @@ entries:
   temporal:
   - apiVersion: v2
     appVersion: 1.29.1
-    created: "2025-12-24T16:41:42.474592+05:30"
+    created: "2025-12-24T17:26:10.972891+05:30"
+    description: Temporal is a distributed, scalable, durable, and highly available
+      orchestration engine to execute asynchronous long-running business logic in
+      a scalable and resilient way.
+    digest: ddd8a922794f071fa0fab4d98465cd83fee926c22687e370aa0b534bfb3f5177
+    home: https://temporal.io/
+    keywords:
+    - temporal
+    - workflow
+    - orchestration
+    maintainers:
+    - name: temporalio
+      url: https://temporal.io/
+    name: temporal
+    sources:
+    - https://github.com/temporalio/temporal
+    type: application
+    urls:
+    - https://dentira.github.io/temporal-charts/temporal-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.29.1
+    created: "2025-12-24T17:26:10.972176+05:30"
     description: Temporal is a distributed, scalable, durable, and highly available
       orchestration engine to execute asynchronous long-running business logic in
       a scalable and resilient way.
@@ -25,7 +47,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.29.1
-    created: "2025-12-24T16:41:42.473911+05:30"
+    created: "2025-12-24T17:26:10.970406+05:30"
     description: Temporal is a distributed, scalable, durable, and highly available
       orchestration engine to execute asynchronous long-running business logic in
       a scalable and resilient way.
@@ -45,4 +67,4 @@ entries:
     urls:
     - https://dentira.github.io/temporal-charts/temporal-1.0.0-rc.1.tgz
     version: 1.0.0-rc.1
-generated: "2025-12-24T16:41:42.472728+05:30"
+generated: "2025-12-24T17:26:10.969625+05:30"
