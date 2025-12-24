@@ -27,13 +27,45 @@ This repo only contains one chart currently, but is structured in the standard h
 
 ## Methods for installing
 
-There are two ways to install the Temporal chart, via our helm repo, or using a local git clone of this repo.
+There are multiple ways to install the Temporal chart:
 
-The Helm repo (`https://go.temporal.io/helm-charts/`) is the preferred method of installing the chart as it avoids the need for you to clone the repo locally, and also ensures you are using a release which has been tested. All of the examples in this README will use the Helm repo to install the chart.
+### Option 1: Via Bitbucket Pages Helm Repository (Recommended for this fork)
 
-Note: The values files that we refer to in the examples are not available from the Helm repo. You will need to download them from Github to use them.
+This repository is configured to be hosted on Bitbucket Pages under the Dentira organization. Once set up, you can install directly from the Helm repository:
 
-The second way of installing the Temporal chart is to clone this git repo and install from there. This method is useful if you are testing changes to the helm chart, but is otherwise not recommended. To use this method, rather than passing `--repo https://go.temporal.io/helm-charts <options> temporal` as in the examples below, run `helm install <options> .` from within the `charts/temporal` directory to tell helm to use the local directory (`.`) for the chart.
+```bash
+# Add the Helm repository
+helm repo add temporal-charts https://dentira.bitbucket.io/temporal-charts/
+
+# Update your local Helm repo cache
+helm repo update
+
+# Install the chart
+helm install my-temporal temporal-charts/temporal --version 1.0.0-rc.1
+```
+
+See [HELM_REPOSITORY.md](HELM_REPOSITORY.md) for complete setup instructions.
+
+### Option 2: Via Official Temporal Helm Repository
+
+The official Temporal Helm repo (`https://go.temporal.io/helm-charts/`) is also available and contains tested releases:
+
+```bash
+helm repo add temporal https://go.temporal.io/helm-charts
+helm install my-temporal temporal/temporal
+```
+
+Note: The values files that we refer to in the examples are not available from the Helm repo. You will need to download them from the repository to use them.
+
+### Option 3: Local Installation
+
+Clone this git repo and install from there. This method is useful if you are testing changes to the helm chart:
+
+```bash
+git clone <repository-url>
+cd temporal-charts/charts/temporal
+helm install my-temporal .
+```
 
 ## Install Temporal with Helm Chart
 
